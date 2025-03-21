@@ -1,0 +1,33 @@
+<% layout("/layouts/boilerplate.ejs") -%>
+
+<body>
+  <% if(existMsg&& existMsg.length){ %>
+  <div class="flashMsg"><%= existMsg %></div>
+  <% } %>
+  <div class="signUpForm">
+    <h2 style="color: rgb(6, 172, 232); font-size: 2rem; margin-left: 5rem">
+      SignUp
+    </h2>
+    <form action="/user/signup" method="post">
+      <span>Name</span><br />
+      <input type="text" name="name" required /><br />
+      <span>Username</span><br />
+      <input
+        type="text"
+        name="username"
+        required
+        minlength="5"
+        maxlength="20"
+      /><br />
+      <span>Password</span><br />
+      <input
+        type="password"
+        name="password"
+        required
+        minlength="8"
+        maxlength="16"
+      /><br />
+      <button class="btn">SignUp</button>
+    </form>
+  </div>
+</body>

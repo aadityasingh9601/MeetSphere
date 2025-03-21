@@ -1,0 +1,41 @@
+<% layout("/layouts/boilerplate.ejs") -%>
+
+<body>
+  <h2 style="margin: 0; background-color: white">
+    <form style="margin: 0 0 0 1rem" action="/" method="get">
+      <button>
+        <i
+          class="fa-solid fa-house"
+          style="font-size: 2rem; background-color: transparent"
+        ></i>
+      </button>
+    </form>
+    Recent meetings
+  </h2>
+  <div class="history">
+    <% for( let each of meetings){ %>
+    <div class="meeting">
+      <p><b>Meeting Code: '<%= each.meetingCode %>' </b><i></i></p>
+      <br />
+
+      <p><b>Participants:-</b></p>
+      <ul>
+        <% for(let e of each.participants){ %>
+        <li><i><%= e %></i></li>
+        <% } %>
+      </ul>
+
+      <p>
+        <b>Date: </b><%= each.date.toString().split(" ").slice(1,4).join(" ")%>
+      </p>
+
+      <p><b>Time: </b><%= each.date.toString().split(" ")[4]%></p>
+      <br />
+
+      <form method="post" action="/user/history/<%= each._id %>?_method=delete">
+        <button class="btn" style="background-color: red">Delete</button>
+      </form>
+    </div>
+    <% } %>
+  </div>
+</body>

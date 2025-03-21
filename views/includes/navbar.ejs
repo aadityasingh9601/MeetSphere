@@ -1,0 +1,22 @@
+<div class="navbar">
+  <div class="logo"><span>Zoom Clone</span></div>
+  <div class="nav-btns">
+    <% if(!currUser) {%>
+    <form action="/user/signup" method="get">
+      <button class="nav-btn btn">SignUp</button>
+    </form>
+
+    <form action="/user/login" method="get">
+      <button class="nav-btn btn">Login</button>
+    </form>
+    <% } %> <% if (currUser){ %>
+    <form action="/user/history" method="get">
+      <button class="nav-btn btn">History</button>
+    </form>
+
+    <form action="/user/logout" method="post">
+      <button class="nav-btn btn">Logout</button>
+    </form>
+    <% } %>
+  </div>
+</div>

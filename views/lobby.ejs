@@ -1,0 +1,21 @@
+<% layout("/layouts/boilerplate.ejs") -%>
+
+<body>
+  <form style="margin: 1rem 0 0 1rem" action="/" method="get">
+    <button>
+      <i
+        class="fa-solid fa-house"
+        style="font-size: 2rem; background-color: transparent"
+      ></i>
+    </button>
+  </form>
+
+  <div class="lobbyForm">
+    <h2 style="color: rgb(6, 172, 232); font-size: 2rem">Join Room</h2>
+    <form action="/lobby" method="post">
+      <span>Enter room id</span><br />
+      <input type="text" name="room" id="room" /><br /><br />
+      <button class="btn">Join</button>
+    </form>
+  </div>
+</body>

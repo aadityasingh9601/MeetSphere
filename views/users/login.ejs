@@ -1,0 +1,17 @@
+<% layout("/layouts/boilerplate.ejs") -%>
+
+<body>
+  <%= successMsg %> <%= missingMsg %> <%= wrongMsg %> <%= notfoundMsg %>
+  <div class="loginForm">
+    <h2 style="color: rgb(6, 172, 232); font-size: 2rem; margin-left: 5rem">
+      Login
+    </h2>
+    <form action="/user/login" method="post">
+      <span>Username</span><br />
+      <input type="text" name="username" /><br />
+      <span>Password</span><br />
+      <input type="password" name="password" /><br />
+      <button class="btn">Login</button>
+    </form>
+  </div>
+</body>

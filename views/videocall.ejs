@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Video Calling</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <i
+      class="fa-solid fa-bars ham"
+      style="
+        color: white;
+        font-size: 2rem;
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
+      "
+    ></i>
+    <div class="mainn">
+      <div class="members remove">
+        <h3>Online members</h3>
+        <ul id="memberList"></ul>
+      </div>
+
+      <div class="video-container">
+        <div class="video">
+          <video id="localVideo" autoplay playsinline muted></video>
+        </div>
+
+        <div class="video2">
+          <video id="remoteVideo" autoplay playsinline></video>
+        </div>
+      </div>
+      <div class="mediaControls">
+        <i class="fa-solid fa-video icon" id="video"></i>
+        <i class="fa-solid fa-video-slash iconn remove" id="videoo"></i>
+        <i class="fa-solid fa-microphone icon" id="audio"></i>
+        <i class="fa-solid fa-microphone-slash iconn remove" id="audioo"></i>
+        <form style="display: inline">
+          <button id="endCallBtn">
+            <img
+              src="https://cdn0.iconfinder.com/data/icons/social-messaging-ui-color-shapes-3/3/55-1024.png"
+              height="40px"
+              width="40px"
+            />
+          </button>
+        </form>
+        <i class="fa-solid fa-display" id="screen"></i>
+        <i class="fa-solid fa-comment-dots" id="chatBtn"></i>
+      </div>
+
+      <div class="chatBox remove">
+        <div class="chats"></div>
+        <div class="msgBox">
+          <textarea
+            type="text"
+            class="msginput"
+            placeholder="Message"
+          ></textarea>
+          <button style="margin: 0 0 0.2rem 0.5rem" class="btn send">
+            Send
+          </button>
+        </div>
+      </div>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="module" src="/js/try.js"></script>
+  </body>
+</html>
