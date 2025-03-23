@@ -2,6 +2,10 @@ import ExpressError from "../utils/ExpressError.js";
 import wrapAsync from "../utils/wrapAsync.js";
 let room;
 
+const landing_page = (req, res) => {
+  res.render("landingpage.ejs");
+};
+
 const home = (req, res) => {
   res.render("home.ejs");
 };
@@ -25,4 +29,4 @@ const session = (req, res) => {
   // Include any other non-sensitive data you need to expose
 };
 
-export default { home, getLobby, postLobby, videocall, session };
+export default { landing_page, home, getLobby, postLobby, videocall, session };

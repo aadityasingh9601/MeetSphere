@@ -4,7 +4,7 @@ import videoController from "../controllers/video.js";
 
 const router = Router();
 
-router.get("/", videoController.home);
+router.get("/", videoController.landing_page);
 
 //Write lobby code here yourself.
 router

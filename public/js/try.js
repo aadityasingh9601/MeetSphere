@@ -17,6 +17,9 @@ let chatBtn = document.querySelector("#chatBtn");
 let screen = document.querySelector("#screen");
 let ham = document.querySelector(".ham");
 let members = document.querySelector(".members");
+let startRec = document.querySelector("#startRec");
+let stopRec = document.querySelector("#stopRec");
+const downloadLink = document.getElementById("downloadLink");
 
 let localStream;
 let username;
@@ -45,6 +48,10 @@ const fetchData = async () => {
 fetchData();
 
 const socket = io();
+
+startRec.addEventListener("click", startRecording);
+
+stopRec.addEventListener("click", stopRecording);
 
 ham.addEventListener("click", () => {
   console.log("clicked");
@@ -290,6 +297,76 @@ let startMyVideo = async () => {
     console.log(e);
   }
 };
+
+//FUNCTION TO IMPLEMENT SCREEN RECORDING FEATURE.
+
+// Get references to UI elements
+
+let mediaRecorder;
+let recordedChunks = [];
+
+async function startRecording() {
+  console.log("inside startRecording");
+  try {
+    // ✅ Step 1: Capture Screen Video & System Audio
+    const screenStream = await navigator.mediaDevices.getDisplayMedia({
+      video: { mediaSource: "screen" },
+      audio: true, // Captures system audio if supported
+    });
+
+    // ✅ Step 2: Capture Microphone Audio Separately
+    const micStream = await navigator.mediaDevices.getUserMedia({
+      audio: true,
+    });
+
+    // ✅ Step 3: Merge Both Streams (Screen + Mic Audio)
+    const mixedStream = new MediaStream([
+      ...screenStream.getVideoTracks(), // Add screen video
+      ...screenStream.getAudioTracks(), // Add system audio
+      ...micStream.getAudioTracks(), // Add mic audio
+    ]);
+
+    // ✅ Step 4: Start Recording
+    mediaRecorder = new MediaRecorder(mixedStream, { mimeType: "video/webm" });
+    recordedChunks = [];
+
+    mediaRecorder.ondataavailable = (event) => {
+      if (event.data.size > 0) {
+        recordedChunks.push(event.data);
+      }
+    };
+
+    mediaRecorder.onstop = saveRecording;
+    mediaRecorder.start();
+
+    console.log("Recording started...");
+    // startButton.disabled = true;
+    // stopButton.disabled = false;
+  } catch (error) {
+    console.error("Error starting screen recording:", error);
+  }
+}
+
+function stopRecording() {
+  if (mediaRecorder) {
+    mediaRecorder.stop();
+    console.log("Recording stopped...");
+  }
+  // startButton.disabled = false;
+  // stopButton.disabled = true;
+}
+
+function saveRecording() {
+  console.log("inside saveRecording");
+  // ✅ Step 5: Convert Recorded Chunks into a Downloadable File
+  const blob = new Blob(recordedChunks, { type: "video/mp4" });
+  console.log(blob);
+  const url = URL.createObjectURL(blob);
+
+  downloadLink.href = url;
+  downloadLink.download = "screen-recording.mp4";
+  downloadLink.style.display = "block";
+}
 
 //Function to get our screen stream and share it.
 
