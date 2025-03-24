@@ -1,21 +1,23 @@
 <% layout("/layouts/boilerplate.ejs") -%>
 
 <body>
-  <form style="margin: 1rem 0 0 1rem" action="/" method="get">
-    <button>
-      <i
-        class="fa-solid fa-house"
-        style="font-size: 2rem; background-color: transparent"
-      ></i>
-    </button>
-  </form>
-
-  <div class="lobbyForm">
-    <h2 style="color: rgb(6, 172, 232); font-size: 2rem">Join Room</h2>
-    <form action="/lobby" method="post">
-      <span>Enter room id</span><br />
-      <input type="text" name="room" id="room" /><br /><br />
-      <button class="btn">Join</button>
-    </form>
+  <div class="lobby">
+    <div class="lobby_content">
+      <div class="lobbyForm">
+        <h2 style="color: #0056d2; font-size: 2rem">Start or Join a Meeting</h2>
+        <form action="/lobby" method="post">
+          <input
+            type="text"
+            name="room"
+            id="room"
+            placeholder="Enter meeting code"
+          /><br /><br />
+          <button class="btn3">Join</button>
+        </form>
+      </div>
+    </div>
+    <div class="lobby_img">
+      <img src="/assets/logo3.png" />
+    </div>
   </div>
 </body>

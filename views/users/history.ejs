@@ -1,18 +1,8 @@
 <% layout("/layouts/boilerplate.ejs") -%>
 
 <body>
-  <h2 style="margin: 0; background-color: white">
-    <form style="margin: 0 0 0 1rem" action="/" method="get">
-      <button>
-        <i
-          class="fa-solid fa-house"
-          style="font-size: 2rem; background-color: transparent"
-        ></i>
-      </button>
-    </form>
-    Recent meetings
-  </h2>
   <div class="history">
+    <h2 style="margin: 0; background-color: white">Recent meetings</h2>
     <% for( let each of meetings){ %>
     <div class="meeting">
       <p><b>Meeting Code: '<%= each.meetingCode %>' </b><i></i></p>

@@ -12,6 +12,8 @@ const meetingSchema = new Schema({
       type: String,
     },
   ],
+  //So that we can detect if both users have deleted the meeting, so that we can remove that from the database.
+  deletedBy: { type: [String], default: [] },
   date: {
     type: Date,
     default: Date.now,

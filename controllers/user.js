@@ -100,7 +100,7 @@ const postLogin = wrapAsync(async (req, res) => {
       await user.save().then((res) => {
         console.log(res);
       });
-      res.redirect("/");
+      res.redirect("/lobby");
       //return res.status(httpStatus.OK).json({ token: token });
     }
     if (!match) {
@@ -168,15 +168,19 @@ const deleteHistory = wrapAsync(async (req, res) => {
 
   const meeting = await Meeting.findById(meetingId);
 
-  //Remove the user from the meeting's participants array.
-  await Meeting.updateOne(
-    { _id: meetingId },
-    { $pull: { participants: req.session.user.username } }
-  );
-  // console.log(meeting.participants.length);
+  if (!meeting) return res.status(404).json({ message: "Meeting not found" });
 
-  //If the meeting has only zero participant left, delete it from meeting database.
-  if (meeting.participants.length === 1) {
+  // If user already marked it as deleted, prevent duplicate entry
+  if (meeting.deletedBy.includes(req.session.user.userId)) {
+    return res.status(400).json({ message: "Already deleted by this user" });
+  }
+
+  //Add the user to the deletedBy array.
+  meeting.deletedBy.push(req.session.user.userId);
+  await meeting.save();
+
+  //If both participants have deleted the meeting, delete it from the database too.
+  if (meeting.participants.length === meeting.deletedBy.length) {
     await Meeting.deleteOne({ _id: meetingId });
     console.log("deleted meeting");
   }

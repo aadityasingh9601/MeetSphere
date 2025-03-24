@@ -8,8 +8,8 @@ import videoRouter from "./routes/videoRoutes.js";
 import userRouter from "./routes/userRoutes.js";
 import session from "express-session";
 import flash from "connect-flash";
-import ejsMate from "ejs-mate";
 import methodOverride from "method-override";
+import ejsMate from "ejs-mate";
 
 async function main() {
   await mongoose.connect("mongodb://127.0.0.1:27017/videoConference");
@@ -53,7 +53,7 @@ app.use((req, res, next) => {
   res.locals.wrongMsg = req.flash("wrong");
   res.locals.logoutErrMsg = req.flash("logouterr");
   res.locals.logoutSuccessMsg = req.flash("logoutsuccess");
-  res.locals.currUser = req.session.user;
+  res.locals.currUser = req.session.user || null;
   next();
 });
 

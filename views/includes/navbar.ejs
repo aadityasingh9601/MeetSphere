@@ -13,9 +13,22 @@
       <button class="nav-btn btn">Login</button>
     </form>
     <% } %> <% if (currUser){ %>
-    <form action="/user/history" method="get">
+    <a href="/lobby" style="margin: 0 0 0 1rem">
+      <i
+        class="fa-solid fa-house"
+        style="font-size: 1.65rem; margin: 0 1rem 0 0; color: #0056d2"
+      ></i>
+    </a>
+
+    <a href="/user/history">
+      <button class="nav-btn btn">History</button>
+    </a>
+
+    <!-- <form action="/user/history" method="get">
       <button class="nav-btn btn">History</button>
     </form>
+    Instead of using a form just to navigate , we can use anchor tags, they take less space.
+     -->
 
     <form action="/user/logout" method="post">
       <button class="nav-btn btn">Logout</button>

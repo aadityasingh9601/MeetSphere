@@ -21,11 +21,7 @@ body {
   height: 4rem;
   left: 0;
   width: 100%;
-  background: rgba(255, 255, 255, 0.1); /* Transparent effect */
-  backdrop-filter: blur(10px); /* Glassmorphism blur */
-  -webkit-backdrop-filter: blur(10px);
   border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
 }
 
 .logo {
@@ -33,9 +29,6 @@ body {
   align-items: center;
   justify-content: center;
   margin-left: 3rem;
-  font-size: 24px;
-  font-weight: bold;
-  color: #0056d2; /* Blue text */
 }
 
 .logo img {
@@ -45,7 +38,7 @@ body {
 }
 
 .logo span {
-  color: blue;
+  color: #0056d2;
   font-weight: bolder;
   font-size: 2rem;
 }
@@ -70,6 +63,18 @@ body {
   border-radius: 0.4rem;
   padding: 0 0.6em;
   margin-right: 1rem;
+}
+
+.btn3 {
+  height: 2.5rem;
+  width: 102%;
+  border-radius: 0.3rem;
+  font-size: 1.05rem;
+  margin: auto;
+  margin-top: 1rem;
+  background-color: #0056d2;
+  color: white;
+  border: none;
 }
 
 .nav-btn {
@@ -107,17 +112,16 @@ body {
 }
 
 .signUpForm {
-  background-color: rgb(28, 19, 19);
   height: 420px;
   width: 320px;
   margin: auto;
-  padding: 1rem 1rem 1rem 3rem;
+  padding: 1rem 1rem 1rem 1rem;
   margin-top: 7rem;
 }
 
 .signup_img {
   height: 100%;
-  width: 55%;
+  width: 60%;
 }
 
 .signup_img img {
@@ -127,21 +131,12 @@ body {
 
 .signup_content {
   height: 100%;
-  width: 45%;
+  width: 40%;
 }
 
 .signUpForm span {
   color: white;
   font-size: 0.8rem;
-}
-
-.signUpForm .btn {
-  height: 2.5rem;
-  width: 87%;
-  border-radius: 0.3rem;
-  font-size: 1.05rem;
-  margin: auto;
-  margin-top: 1rem;
 }
 
 .login_page {
@@ -154,7 +149,7 @@ body {
 
 .login_img {
   height: 100%;
-  width: 55%;
+  width: 60%;
 }
 
 .login_img img {
@@ -164,24 +159,15 @@ body {
 
 .login_content {
   height: 100%;
-  width: 45%;
+  width: 40%;
 }
 
 .loginForm {
   height: 350px;
   width: 320px;
   margin: auto;
-  padding: 1rem 1rem 1rem 3rem;
+  padding: 1rem 1rem 1rem 1rem;
   margin-top: 7rem;
-}
-
-.loginForm .btn {
-  height: 2.5rem;
-  width: 102%;
-  border-radius: 0.3rem;
-  font-size: 1.05rem;
-  margin: auto;
-  margin-top: 1rem;
 }
 
 .main {
@@ -215,26 +201,42 @@ input:focus {
   box-shadow: 0 0 5px#0056d2; /* Optional: Add glow effect */
 }
 
+.lobby {
+  position: fixed;
+  top: 4rem;
+  width: 100%;
+  height: 92%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lobby_content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 50%;
+}
+
 .lobbyForm {
-  background-color: rgb(28, 19, 19);
   height: 250px;
-  width: 320px;
-  margin: auto;
-  padding: 1rem 1rem 1rem 3rem;
-  margin-top: 10rem;
+  width: fit-content;
+  padding: 1rem 1rem 1rem 1rem;
+  margin: 0 0 8rem 0;
 }
 
-.lobbyForm span {
-  color: white;
-  font-size: 0.8rem;
+.lobby_img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 50%;
 }
 
-.lobbyForm .btn {
-  height: 2.5rem;
-  width: 87%;
-  border-radius: 0.3rem;
-  font-size: 1.05rem;
-  margin: auto;
+.lobby_img img {
+  height: 75%;
+  width: 75%;
 }
 
 .members {
@@ -251,6 +253,7 @@ input:focus {
   top: 5rem;
   display: flex;
   height: 70vh;
+  width: 100% !important;
   align-items: center;
   width: fit-content;
   background-color: aqua;
@@ -258,20 +261,23 @@ input:focus {
 
 .video {
   height: 550px;
-  width: 764px;
-  border: 2px solid black;
+  width: 50%;
+  border: 1px solid black;
   margin: 0;
-}
-
-.video2 {
-  height: 550px;
-  width: 765px;
-  border: 2px solid black;
 }
 
 #localVideo {
   height: 100%;
   width: 100%;
+}
+
+video::-webkit-media-controls-play-button,
+video::-webkit-media-controls-timeline,
+video::-webkit-media-controls-current-time-display,
+video::-webkit-media-controls-volume-control-container,
+video::-webkit-media-controls-mute-button,
+video::-webkit-media-controls-volume-slider {
+  display: none !important;
 }
 
 #remoteVideo {
@@ -389,14 +395,19 @@ input:focus {
 }
 
 .history {
+  border-top: 1px solid black;
+  background-color: antiquewhite;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   padding: 2rem 1rem;
   height: fit-content;
-  background-color: white;
   overflow: auto;
+  position: fixed;
+  top: 4rem;
+  width: 100%;
+  height: 92%;
 }
 
 .meeting {
