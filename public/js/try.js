@@ -127,8 +127,7 @@ socket.on("msg", (msg, sender) => {
   // if (sender === username) {
   //   chat.classList.add = "positioned";
   // }
-  name.style.color = "purple";
-  name.style.fontWeight = "bold";
+  name.classList.add("chat_user");
   message.textContent = msg;
   chat.classList.add("chat");
   chats.appendChild(chat);
@@ -195,7 +194,7 @@ socket.on("joined", (data) => {
       if (user !== username) {
         let callBtn = document.createElement("button");
         callBtn.textContent = "Call";
-        callBtn.style.backgroundColor = "green";
+        callBtn.classList.add("btn2");
         callBtn.addEventListener("click", () => {
           startCall(user, data);
         });

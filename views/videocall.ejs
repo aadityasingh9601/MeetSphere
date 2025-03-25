@@ -20,16 +20,16 @@
     <% } else { %>
     <h1>Welcome, Guest!</h1>
     <% } %> -->
-    <i
-      class="fa-solid fa-bars ham"
-      style="
-        color: white;
-        font-size: 2rem;
-        position: absolute;
-        top: 1rem;
-        left: 1rem;
-      "
-    ></i>
+    <div class="videocall-menu">
+      <i class="fa-solid fa-bars ham"></i>
+
+      <a href="/lobby" style="margin: 0 0 0 1rem">
+        <i
+          class="fa-solid fa-house"
+          style="font-size: 1.65rem; margin: 0 1rem 0 0; color: #0056d2"
+        ></i>
+      </a>
+    </div>
     <div class="mainn">
       <div class="members remove">
         <h3>Online members</h3>
@@ -54,24 +54,28 @@
         </div>
       </div>
       <div class="mediaControls">
-        <i class="fa-solid fa-video icon" id="video"></i>
-        <i class="fa-solid fa-video-slash iconn remove" id="videoo"></i>
-        <i class="fa-solid fa-microphone icon" id="audio"></i>
-        <i class="fa-solid fa-microphone-slash iconn remove" id="audioo"></i>
-        <form style="display: inline">
-          <button id="endCallBtn">
-            <img
-              src="https://cdn0.iconfinder.com/data/icons/social-messaging-ui-color-shapes-3/3/55-1024.png"
-              height="40px"
-              width="40px"
-            />
-          </button>
-        </form>
-        <i class="fa-solid fa-display" id="screen"></i>
-        <i class="fa-solid fa-comment-dots" id="chatBtn"></i>
-        <button id="startRec">Start recording</button>
-        <button id="stopRec">Stop recording</button>
-        <a id="downloadLink" href="">Download Link</a>
+        <div class="a">
+          <i class="fa-solid fa-video icon" id="video"></i>
+          <i class="fa-solid fa-video-slash iconn remove" id="videoo"></i>
+          <i class="fa-solid fa-microphone icon" id="audio"></i>
+          <i class="fa-solid fa-microphone-slash iconn remove" id="audioo"></i>
+          <form style="display: inline">
+            <button id="endCallBtn">
+              <img
+                src="https://cdn0.iconfinder.com/data/icons/social-messaging-ui-color-shapes-3/3/55-1024.png"
+                height="40px"
+                width="40px"
+              />
+            </button>
+          </form>
+          <i class="fa-solid fa-display" id="screen"></i>
+          <i class="fa-solid fa-comment-dots" id="chatBtn"></i>
+        </div>
+        <div class="b">
+          <button id="startRec" class="btn">Start recording</button>
+          <button id="stopRec" class="btn">Stop recording</button>
+          <a id="downloadLink" href=""><button class="btn">Download</button></a>
+        </div>
       </div>
 
       <div class="chatBox remove">

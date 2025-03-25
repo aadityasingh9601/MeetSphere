@@ -2,13 +2,16 @@
 
 <body>
   <div class="history">
-    <h2 style="margin: 0; background-color: white">Recent meetings</h2>
+    <!-- <h2 style="text-align: center; margin-bottom: 20px; display: block">
+      Recent Meetings
+    </h2> -->
+
     <% for( let each of meetings){ %>
-    <div class="meeting">
+    <div class="meeting-card">
       <p><b>Meeting Code: '<%= each.meetingCode %>' </b><i></i></p>
       <br />
 
-      <p><b>Participants:-</b></p>
+      <p><b>Participants --</b></p>
       <ul>
         <% for(let e of each.participants){ %>
         <li><i><%= e %></i></li>
@@ -19,11 +22,15 @@
         <b>Date: </b><%= each.date.toString().split(" ").slice(1,4).join(" ")%>
       </p>
 
-      <p><b>Time: </b><%= each.date.toString().split(" ")[4]%></p>
+      <p>
+        <b>Time: </b><%= new Date(each.date).toLocaleString("en-US", { hour:
+        "numeric", minute: "numeric", hour12: true }) %>
+      </p>
+
       <br />
 
       <form method="post" action="/user/history/<%= each._id %>?_method=delete">
-        <button class="btn" style="background-color: red">Delete</button>
+        <button class="btn">Delete</button>
       </form>
     </div>
     <% } %>

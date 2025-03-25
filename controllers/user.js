@@ -128,7 +128,10 @@ const postLogout = wrapAsync(async (req, res) => {
 const showHistory = wrapAsync(async (req, res) => {
   const user = await User.findOne({
     username: req.session.user.username,
-  }).populate("history");
+  }).populate({
+    path: "history",
+    options: { sort: { date: -1 } },
+  });
   const meetings = user.history;
 
   res.render("users/history.ejs", { meetings });
