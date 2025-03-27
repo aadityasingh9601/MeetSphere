@@ -1,6 +1,7 @@
 import express from "express";
 import { Router } from "express";
 import userController from "../controllers/user.js";
+import checkSession from "../utils/Middleware.js";
 
 const router = Router();
 
@@ -18,7 +19,7 @@ router.post("/logout", userController.postLogout);
 
 router
   .route("/history")
-  .get(userController.showHistory)
+  .get(checkSession, userController.showHistory)
   .post(userController.postHistory);
 
 router.delete("/history/:id", userController.deleteHistory);

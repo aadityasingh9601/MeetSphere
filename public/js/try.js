@@ -335,12 +335,16 @@ async function startRecording() {
       }
     };
 
+    mediaRecorder.onstop = () => {
+      // Ensure the recording stops only when using your custom stop button
+      if (recordedChunks.length > 0) {
+        saveRecording();
+      }
+    };
     mediaRecorder.onstop = saveRecording;
     mediaRecorder.start();
 
     console.log("Recording started...");
-    // startButton.disabled = true;
-    // stopButton.disabled = false;
   } catch (error) {
     console.error("Error starting screen recording:", error);
   }

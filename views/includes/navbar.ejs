@@ -5,13 +5,13 @@
   </div>
   <div class="nav-btns">
     <% if(!currUser) {%>
-    <form action="/user/signup" method="get">
+    <a href="/user/signup">
       <button class="btn2">SignUp</button>
-    </form>
+    </a>
 
-    <form action="/user/login" method="get">
+    <a href="/user/login">
       <button class="btn2">Login</button>
-    </form>
+    </a>
     <% } %> <% if (currUser){ %>
     <a href="/lobby" style="margin: 0 0 0 1rem">
       <i

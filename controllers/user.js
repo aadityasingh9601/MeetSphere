@@ -71,35 +71,32 @@ const postLogin = wrapAsync(async (req, res) => {
   const { username, password } = req.body;
 
   if (!username || !password) {
-    // res.json({ message: "Please provide both username and password" });
     req.flash("missing", "Please provide both username and password");
     res.redirect("/user/login");
   }
 
   try {
-    const user = await User.findOne({ username: username }); //Don't use User.find, else a array will be returned &error will occur.
-
+    const user = await User.findOne({ username: username });
     if (!user) {
       req.flash("notfound", "User doesn't exist.");
       res.redirect("/user/login");
     }
 
     const match = await bcrypt.compare(password, user.password);
-    // console.log(match);
 
     if (match) {
-      const token = crypto.randomBytes(20).toString("hex");
-      console.log(token);
-      user.token = token; //Assign a token to the user.
-
-      //Storing information in our session.
+      //Storing information in our session. We're just modifiying the session here, an empty session is
+      //already created by the app.use session middleware and the session id is stored in the browser, as
+      //it's the default behavior of express sessions, here we're just modifying our session, so, don't get
+      //confused, how cookie is created and session object is created without every logging in.
       req.session.user = { username: user.username, userId: user._id };
-      req.session.cookie.expires = new Date(Date.now() + 86400000);
-      req.session.cookie.maxAge = 86400000;
-      console.log(req.session);
-      await user.save().then((res) => {
-        console.log(res);
-      });
+      //Setting an expiry date of 7 days on the session cookie.
+      req.session.cookie.expires = new Date(
+        Date.now() + 7 * 24 * 60 * 60 * 1000
+      );
+      req.session.cookie.maxAge = 7 * 24 * 60 * 60 * 1000;
+      //console.log(req.session);
+      await user.save();
       res.redirect("/lobby");
       //return res.status(httpStatus.OK).json({ token: token });
     }
@@ -115,17 +112,20 @@ const postLogin = wrapAsync(async (req, res) => {
 
 const postLogout = wrapAsync(async (req, res) => {
   //If user is logging out, destroy the session.
-  if (req.session.user) {
-    await req.session.destroy((err) => {
+  if (req.session) {
+    req.session.destroy((err) => {
       if (err) {
-        res.redirect("/");
+        return res.status(500).send("Could not log out.");
       }
-      res.redirect("/");
+      res.clearCookie("connect.sid"); // Clear the cookie in the browser
+      res.redirect("/user/login");
     });
   }
 });
 
 const showHistory = wrapAsync(async (req, res) => {
+  //The client sends the cookie that has the session id, through which user is extracted and identified
+  //easily.
   const user = await User.findOne({
     username: req.session.user.username,
   }).populate({

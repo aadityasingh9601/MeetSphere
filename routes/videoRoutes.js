@@ -1,6 +1,6 @@
-import express from "express";
 import { Router } from "express";
 import videoController from "../controllers/video.js";
+import checkSession from "../utils/Middleware.js";
 
 const router = Router();
 
@@ -9,13 +9,13 @@ router.get("/", videoController.landing_page);
 //Write lobby code here yourself.
 router
   .route("/lobby")
-  .get(videoController.getLobby)
+  .get(checkSession, videoController.getLobby)
 
   .post(videoController.postLobby);
 
 router.get("/session-info", videoController.session);
 
-router.get("/videocall", videoController.videocall);
+router.get("/videocall", checkSession, videoController.videocall);
 
 // module.exports = router;  we use this for common modules.
 
