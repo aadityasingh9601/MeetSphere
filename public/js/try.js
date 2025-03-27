@@ -368,7 +368,7 @@ function saveRecording() {
 
   downloadLink.href = url;
   downloadLink.download = "screen-recording.mp4";
-  downloadLink.style.display = "block";
+  downloadLink.style.display = "inline";
 }
 
 //Function to get our screen stream and share it.
