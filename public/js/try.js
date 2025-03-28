@@ -280,7 +280,7 @@ let startMyVideo = async () => {
       .getUserMedia({
         audio: { echoCancellation: true },
         video: {
-          width: { ideal: 1920 }, // Requesting a width of 1920 pixels
+          width: { ideal: 1080 }, // Requesting a width of 1080 pixels
           height: { ideal: 1080 }, // Requesting a height of 1080 pixels
         },
       })
