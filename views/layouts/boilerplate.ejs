@@ -14,6 +14,11 @@
     <link rel="stylesheet" href="/css/style.css" />
   </head>
   <body>
-    <%- include("../includes/navbar.ejs")%> <%- body -%>
+    <% if(successMsg.length || missingMsg.length || wrongMsg.length ||
+    notfoundMsg.length){ %>
+    <div class="alert-msg">
+      <%= successMsg %> <%= missingMsg %> <%= wrongMsg %> <%= notfoundMsg %>
+    </div>
+    <% } %> <%- include("../includes/navbar.ejs")%> <%- body -%>
   </body>
 </html>

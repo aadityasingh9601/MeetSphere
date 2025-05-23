@@ -7,18 +7,24 @@
     <link rel="stylesheet" href="/css/style.css" />
   </head>
   <body>
-    <% if(existMsg&& existMsg.length){ %>
-    <div class="flashMsg"><%= existMsg %></div>
+    <% if(successMsg.length || missingMsg.length || wrongMsg.length ||
+    notfoundMsg.length){ %>
+    <div class="alert-msg">
+      <%= successMsg %> <%= missingMsg %> <%= wrongMsg %> <%= notfoundMsg %> <%
+      if(existMsg && existMsg.length){ %> <%= existMsg %> <% } %>
+    </div>
     <% } %>
+
     <div class="signup_page">
       <div class="signup_img">
         <img src="/assets/login_image2.jpg" />
       </div>
       <div class="signup_content">
         <div class="signUpForm">
-          <h2 style="color: #0056d2; font-size: 2rem; margin-left: 6.5rem">
-            Sign Up
-          </h2>
+          <div class="auth_btns">
+            <a href="/user/signup"><div class="btn3 btn4">Sign Up</div></a>
+            <a href="/user/login"><div class="btn3 btn5">Sign In</div></a>
+          </div>
           <form action="/user/signup" method="post">
             <input type="text" name="name" placeholder="Name" /><br />
 
