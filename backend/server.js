@@ -9,10 +9,14 @@ import userRouter from "./routes/userRoutes.js";
 import session from "express-session";
 import flash from "connect-flash";
 import methodOverride from "method-override";
+import dotenv from "dotenv";
 import ejsMate from "ejs-mate";
+dotenv.config();
+
+console.log(process.env.MONGO_URL);
 
 async function main() {
-  await mongoose.connect("mongodb://127.0.0.1:27017/videoConference");
+  await mongoose.connect(process.env.MONGO_URL);
 }
 
 main()
@@ -36,7 +40,7 @@ app.engine("ejs", ejsMate);
 app.use(methodOverride("_method"));
 app.use(
   session({
-    secret: "billu",
+    secret: process.env.COOKIE_SECRET,
     resave: false,
     saveUninitialized: false,
     cookie: { secure: false },

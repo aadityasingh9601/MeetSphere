@@ -2,7 +2,7 @@ import httpStatus from "http-status";
 import bcrypt from "bcrypt";
 import User from "../models/User.js";
 import Meeting from "../models/Meeting.js";
-import crypto from "crypto";
+
 import userSchema from "../schema.js";
 import ExpressError from "../utils/ExpressError.js";
 import wrapAsync from "../utils/wrapAsync.js";
@@ -45,7 +45,7 @@ const postSignUp = wrapAsync(async (req, res) => {
       .save()
       .then((response) => {
         console.log(response);
-        req.flash("success", "user registered successfully!");
+        req.flash("success", "User registered successfully!");
         res.redirect("/user/login");
         // return (
         //   res

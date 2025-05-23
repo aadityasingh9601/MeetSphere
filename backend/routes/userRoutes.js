@@ -1,6 +1,5 @@
-import express from "express";
 import { Router } from "express";
-import userController from "../backend/controllers/user.js";
+import userController from "../controllers/user.js";
 import checkSession from "../utils/Middleware.js";
 
 const router = Router();

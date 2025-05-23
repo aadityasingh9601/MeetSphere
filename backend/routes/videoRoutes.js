@@ -1,5 +1,5 @@
 import { Router } from "express";
-import videoController from "../backend/controllers/video.js";
+import videoController from "../controllers/video.js";
 import checkSession from "../utils/Middleware.js";
 
 const router = Router();
