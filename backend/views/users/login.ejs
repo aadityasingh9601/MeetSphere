@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <% if(successMsg.length || missingMsg.length || wrongMsg.length ||
+    notfoundMsg.length){ %>
+    <div class="alert-msg">
+      <%= successMsg %> <%= missingMsg %> <%= wrongMsg %> <%= notfoundMsg %>
+    </div>
+    <% } %>
+    <div class="login_page">
+      <div class="login_img">
+        <img src="/assets/login_image2.jpg" />
+      </div>
+      <div class="login_content">
+        <div class="loginForm">
+          <div class="auth_btns">
+            <a href="/user/signup"><div class="btn3 btn5">Sign Up</div></a>
+            <a href="/user/login"><div class="btn3 btn4">Sign In</div></a>
+          </div>
+          <form action="/user/login" method="post">
+            <input type="text" name="username" placeholder="Username" /><br />
+
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+            /><br />
+            <button class="btn3">Login</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

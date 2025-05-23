@@ -1,0 +1,24 @@
+<% layout("/layouts/boilerplate.ejs") -%>
+
+<body>
+  <div class="lobby">
+    <div class="lobby_content">
+      <div class="lobbyForm">
+        <h2 style="color: #0056d2; font-size: 2rem">Start or Join a Meeting</h2>
+        <form action="/lobby" method="post">
+          <input
+            type="text"
+            name="room"
+            id="room"
+            placeholder="Enter meeting code"
+          /><br />
+          <br />
+          <button class="btn3">Join</button>
+        </form>
+      </div>
+    </div>
+    <div class="lobby_img">
+      <img src="/assets/logo3.png" />
+    </div>
+  </div>
+</body>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Video Calling</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <!-- <% if (currUser) { %>
+    <h1><%= currUser.username %>!</h1>
+
+    <% } else { %>
+    <h1>Welcome, Guest!</h1>
+    <% } %> -->
+    <div class="videocall-menu">
+      <i class="fa-solid fa-bars ham"></i>
+
+      <a href="/lobby" style="margin: 0 0 0 1rem">
+        <i
+          class="fa-solid fa-house"
+          style="font-size: 1.65rem; margin: 0 1rem 0 0; color: #0056d2"
+        ></i>
+      </a>
+    </div>
+    <div class="mainn">
+      <div class="members remove">
+        <h3>Online members</h3>
+        <ul id="memberList"></ul>
+      </div>
+
+      <div class="video-container">
+        <!-- //Writing "controls" in the tag lets us access the built-in video player controls that are supported
+        //by broswers. But we can also customize and override them as per our needs. -->
+        <div class="video">
+          <video
+            id="localVideo"
+            autoplay
+            playsinline
+            controls
+            controlsList="noremoteplayback"
+          ></video>
+        </div>
+
+        <div class="video">
+          <video id="remoteVideo" autoplay playsinline controls></video>
+        </div>
+      </div>
+      <div class="mediaControls">
+        <div class="a">
+          <i class="fa-solid fa-video icon" id="video"></i>
+          <i class="fa-solid fa-video-slash iconn remove" id="videoo"></i>
+          <i class="fa-solid fa-microphone icon" id="audio"></i>
+          <i class="fa-solid fa-microphone-slash iconn remove" id="audioo"></i>
+          <form style="display: inline">
+            <button id="endCallBtn">
+              <img
+                src="https://cdn0.iconfinder.com/data/icons/social-messaging-ui-color-shapes-3/3/55-1024.png"
+                height="40px"
+                width="40px"
+              />
+            </button>
+          </form>
+          <i class="fa-solid fa-display" id="screen"></i>
+          <i class="fa-solid fa-comment-dots" id="chatBtn"></i>
+        </div>
+        <div class="b">
+          <button id="startRec" class="btn">Start recording</button>
+          <button id="stopRec" class="btn">Stop recording</button>
+          <a id="downloadLink" style="display: none" href=""
+            ><button class="btn">Download</button></a
+          >
+        </div>
+      </div>
+
+      <div class="chatBox remove">
+        <div class="chats"></div>
+        <div class="msgBox">
+          <textarea
+            type="text"
+            class="msginput"
+            placeholder="Message"
+          ></textarea>
+          <button style="margin: 0 0 0.2rem 0.5rem" class="btn send">
+            Send
+          </button>
+        </div>
+      </div>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="module" src="/js/app.js"></script>
+  </body>
+</html>
