@@ -2,7 +2,6 @@ import httpStatus from "http-status";
 import bcrypt from "bcrypt";
 import User from "../models/User.js";
 import Meeting from "../models/Meeting.js";
-
 import userSchema from "../schema.js";
 import ExpressError from "../utils/ExpressError.js";
 import wrapAsync from "../utils/wrapAsync.js";
@@ -20,7 +19,9 @@ const postSignUp = wrapAsync(async (req, res) => {
   console.log(error);
 
   if (error) {
-    throw new ExpressError(httpStatus.BAD_REQUEST, "Validation failed");
+    //throw new ExpressError(httpStatus.BAD_REQUEST, "Validation failed");
+    req.flash("wrong", error.details[0].message);
+    res.redirect("/user/signup");
   }
   if (!error) {
     let existingUser = await User.findOne({ username: username });

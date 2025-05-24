@@ -13,8 +13,6 @@ import dotenv from "dotenv";
 import ejsMate from "ejs-mate";
 dotenv.config();
 
-console.log(process.env.MONGO_URL);
-
 async function main() {
   await mongoose.connect(process.env.MONGO_URL);
 }
