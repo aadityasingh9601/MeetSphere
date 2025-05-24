@@ -25,7 +25,12 @@ main()
 
 const app = express();
 const server = createServer(app);
-const io = new Server(server);
+const io = new Server(server, {
+  cors: {
+    origin: "https://meetsphere.onrender.com",
+    methods: ["GET", "POST"],
+  },
+});
 
 //const allUsers = {}; //To store information of all users.
 const roomData = {}; //To store information of all rooms and their users.
