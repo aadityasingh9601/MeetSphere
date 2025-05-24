@@ -21,7 +21,7 @@ let startRec = document.querySelector("#startRec");
 let stopRec = document.querySelector("#stopRec");
 const downloadLink = document.getElementById("downloadLink");
 
-const BACKEND_URL = "https://meetsphere.onrender.com/";
+const BACKEND_URL = "https://meetsphere.onrender.com";
 
 let localStream;
 let username;
