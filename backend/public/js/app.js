@@ -20,8 +20,8 @@ let members = document.querySelector(".members");
 let startRec = document.querySelector("#startRec");
 let stopRec = document.querySelector("#stopRec");
 const downloadLink = document.getElementById("downloadLink");
-import dotenv from "dotenv";
-dotenv.config();
+
+const BACKEND_URL = "https://meetsphere.onrender.com/";
 
 let localStream;
 let username;
@@ -31,7 +31,7 @@ let stream;
 let room;
 
 const fetchData = async () => {
-  await fetch(`${process.env.BACKEND_URL}/session-info`)
+  await fetch(`${BACKEND_URL}/session-info`)
     .then((response) => {
       return response.json();
     })
@@ -100,7 +100,7 @@ sendBtn.addEventListener("click", () => {
 endCallBtn.addEventListener("click", async () => {
   socket.emit("callEnded", caller, room);
   let dataa = { caller, room };
-  await fetch(`${process.env.BACKEND_URL}/user/history`, {
+  await fetch(`${BACKEND_URL}/user/history`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -267,7 +267,7 @@ let endCall = async () => {
     await pc.close();
     endCallBtn.style.display = "none";
   }
-  window.location.href = `${process.env.BACKEND_URL}/lobby`;
+  window.location.href = `${BACKEND_URL}/lobby`;
 };
 
 //Function to get our local stream and set it.
