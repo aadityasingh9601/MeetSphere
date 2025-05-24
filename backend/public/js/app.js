@@ -31,7 +31,7 @@ let stream;
 let room;
 
 const fetchData = async () => {
-  await fetch(`${BACKEND_URL}/session-info`)
+  await fetch(`/session-info`)
     .then((response) => {
       return response.json();
     })
@@ -100,7 +100,7 @@ sendBtn.addEventListener("click", () => {
 endCallBtn.addEventListener("click", async () => {
   socket.emit("callEnded", caller, room);
   let dataa = { caller, room };
-  await fetch(`${BACKEND_URL}/user/history`, {
+  await fetch(`/user/history`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -267,7 +267,7 @@ let endCall = async () => {
     await pc.close();
     endCallBtn.style.display = "none";
   }
-  window.location.href = `${BACKEND_URL}/lobby`;
+  window.location.href = `/lobby`;
 };
 
 //Function to get our local stream and set it.
