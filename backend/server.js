@@ -94,6 +94,7 @@ io.on("connection", (socket) => {
     // console.log(username);
     // console.log(room);
     socket.join(room);
+    console.log(username, room);
 
     if (!roomData[room]) {
       roomData[room] = {};
