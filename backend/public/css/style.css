@@ -44,9 +44,25 @@ body {
   font-size: 2rem;
 }
 
-.tagline {
+.landing_page{
+  display: flex;
+  padding: 0 5rem 0 0;
+  width: 100%;
+}
+
+.landing_page .tagline {
   text-align: left;
-  width: 35%;
+  width: 40%;
+}
+
+.landing_page .landing_page_img{
+ 
+  width: 40%;
+}
+
+.landing_page_img img{
+   width: 100%;
+   height:100%;
 }
 
 .nav-btns {
@@ -55,15 +71,24 @@ body {
 }
 
 .auth_btns {
-  display: flex;
-  width: 100%;
+  display: flex !important;
+  flex-direction: row !important;
   justify-content: center;
   align-items: center;
+  gap: 1rem;
   margin: 0 0 1.5rem 0;
 }
 
 .auth_btns a {
   text-decoration: none;
+}
+
+.auth_btns .btn3,
+.auth_btns .btn4,
+.auth_btns .btn5 {
+  padding:0.6rem 0.7rem;
+  font-size: 1.05rem;
+  box-sizing: border-box;
 }
 
 .btn {
@@ -130,14 +155,6 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
-}
-
-.tagline {
-  margin: 0 0 5rem 0;
-  color: white; /* Ensures contrast */
-  padding: 10px 15px; /* Adds some spacing */
-  border-radius: 8px; /* Smooth edges */
-  display: inline-block; /* Keeps it as a box */
 }
 
 .signup_page {
@@ -274,12 +291,13 @@ input:focus {
 
 .lobby_img img {
   height: 75%;
-  width: 75%;
+  width: 80%;
 }
 
 .members {
   position: absolute;
   left: 0rem;
+  width: 8rem;
   top: 5rem;
   width: 10%;
   z-index: 10;
@@ -331,6 +349,7 @@ input:focus {
   width: 100%;
 }
 
+/* Styles for the controls of video elements */
 video::-webkit-media-controls-play-button,
 video::-webkit-media-controls-timeline,
 video::-webkit-media-controls-current-time-display,
@@ -442,6 +461,10 @@ video::-webkit-media-controls-volume-slider {
   left: 1rem;
   display: flex;
   align-items: center;
+}
+
+.msgBox textarea {
+  resize: none;
 }
 
 .msginput {
@@ -559,3 +582,541 @@ video::-webkit-media-controls-volume-slider {
   z-index: 999;
   animation: fadeInUp 0.3s ease-out;
 }
+
+@media screen and (max-width: 1200px) {
+  .landing_page {
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 3rem 0 2rem 0;
+    justify-content: flex-start;
+  }
+  .landing_page .tagline {
+    width: 90%;
+    margin-bottom: 2.5rem;
+    text-align: center;
+    padding: 0;
+  }
+  .landing_page .tagline > div:first-child {
+    font-size: 2.5rem !important;
+    font-weight: 700;
+    margin-bottom: 1.2rem;
+    line-height: 1.15;
+  }
+  .landing_page .tagline > div:nth-child(2) {
+    font-size: 1.3rem !important;
+    margin-bottom: 1.5rem;
+    color: #444;
+  }
+
+  .landing_page_img img {
+    height: 100%;
+    width: 65vh;
+    max-width: 600px;
+    min-width: 260px;
+    height: auto;
+    margin: 0 auto 1.5rem auto;
+    display: block;
+  }
+
+  .signup_img, .login_img, .lobby_img {
+    width: 50%;
+  }
+  
+  .signup_content, .login_content, .lobby_content {
+    width: 50%;
+  }
+}
+
+
+@media screen and (max-width: 992px) {
+  .signup_img, .login_img, .lobby_img {
+    width: 40%;
+  }
+  
+  .signup_content, .login_content, .lobby_content {
+    width: 60%;
+  }
+  
+  .video-container {
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    position: static;
+    width: 100% !important;
+    height: 60vh;
+    gap: 1.5rem;
+    margin: 0 auto;
+  }
+  .video {
+    width: 90vw;
+    max-width: 700px;
+    height: 28vh;
+    margin: 0 auto;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .video video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  .mediaControls {
+    position: static;
+    margin-top: 2rem;
+    top: unset;
+  }
+  .landing_page {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 2rem 0 1.5rem 0;
+    width: 100%;
+  }
+  .landing_page .tagline {
+    width: 90%;
+    text-align: center;
+    margin: 0 auto 1.5rem auto;
+    padding: 0;
+  }
+  .landing_page .landing_page_img {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+  }
+  .landing_page_img img {
+    width: 100%;
+    height: 60vh;
+    object-fit: contain;
+    display: block;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .navbar {
+    padding: 0 1rem;
+  }
+  
+  .logo {
+    margin-left: 1rem;
+  }
+  
+  .logo span {
+    font-size: 1.7rem;
+  }
+  
+  .signup_img, .login_img, .lobby_img {
+    display: none;
+  }
+  
+  .signup_content, .login_content, .lobby_content {
+    width: 100%;
+    padding: 0 1rem;
+  }
+  
+  .signUpForm, .loginForm, .lobbyForm {
+    width: 100%;
+    max-width: 400px;
+    margin: 2rem auto;
+  }
+  
+  .mediaControls {
+    position: static;
+    margin-top: 1.5rem;
+    top: unset;
+  }
+  
+  .chatBox {
+    position: absolute;
+    right: 0;
+    top: 4.5rem;
+    width: 45vw;
+    max-width: 350px;
+    height: 60vh;
+    background: #f5f5f5;
+    border-radius: 10px 0 0 10px;
+    box-shadow: -2px 0 8px rgba(0,0,0,0.08);
+    z-index: 99;
+    transition: right 0.3s;
+  }
+  .chats {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 0.8rem 0.6rem;
+    background: #fff;
+    margin-bottom: 0.5rem;
+    height: 47vh;
+  }
+  .chat {
+    max-width: 90%;
+    font-size: 0.97rem;
+    padding: 0.4rem 0.7rem;
+    margin: 0.3rem 0;
+    border-radius: 0.6rem;
+    word-break: break-word;
+  }
+  .msgBox {
+    width: 100%;
+    position: static;
+    display: flex;
+    align-items: center;
+    background: #f5f5f5;
+    padding: 0.5rem 0.2rem 0.5rem 0.2rem;
+    border-radius: 0 0 10px 10px;
+  }
+  .msginput {
+    width: 75%;
+    min-height: 2.2rem;
+    font-size: 1rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    padding: 0.5rem;
+    resize: none;
+  }
+  .send {
+    width: 22%;
+    min-width: 60px;
+    margin-left: 0.5rem;
+    font-size: 1rem;
+    padding: 0.5rem 0.2rem;
+    border-radius: 6px;
+  }
+  
+  .members {
+    width: 8rem;
+    position: fixed;
+    top: 4rem;
+    left: 0;
+    height: auto;
+    max-height: 50vh;
+  }
+
+  .auth_btns {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0 0 1.5rem 0;
+  }
+
+  .auth_btns a {
+    text-decoration: none;
+    
+    
+  }
+
+  .auth_btns .btn3,
+  .auth_btns .btn4,
+  .auth_btns .btn5 {
+    padding:0.3rem 0.8rem;
+    font-size: 1rem;
+    box-sizing: border-box;
+    margin: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Ensure the form container has proper padding */
+  .loginForm, .signUpForm {
+    padding: 1.5rem;
+    width: 100%;
+    max-width: 400px;
+    margin: 12rem auto 0 auto;
+  }
+
+  /* Ensure the content area has proper padding */
+  .login_content, .signup_content {
+    padding: 0 1rem;
+  }
+
+  .video-container {
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    position: static;
+    width: 100% !important;
+    height: 55vh;
+    gap: 1.2rem;
+    margin: 0 auto;
+  }
+  .video {
+    width: 96vw;
+    max-width: 500px;
+    height: 24vh;
+    margin: 0 auto;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .video video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+
+  .videocall-menu .fa-house {
+    font-size: 1.2rem !important;
+    margin: 0 1rem 0 0;
+    color: #0056d2;
+    vertical-align: middle;
+  }
+
+  .btn, .btn2, .btn3, .btn4, .btn5 {
+    min-width: 44px;
+    
+  }
+  
+  .mediaControls i {
+    padding: 12px;
+  }
+
+  .chat {
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+  }
+  
+  .chat_user {
+    font-size: 0.9rem;
+  }
+  
+  .msgBox {
+    position: sticky;
+    bottom: 0;
+    background: white;
+  }
+
+  input {
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+  
+  .auth_btns {
+    flex-direction: column;
+   
+  }
+  
+  .auth_btns .btn, .auth_btns .btn2 {
+    width: 100%;
+    margin: 0;
+  }
+
+  .videocall-menu {
+    padding: 0.5rem;
+  }
+  
+  .ham {
+    font-size: 1.2rem;
+  }
+  .error-box {
+    width: 90%;
+    padding: 1rem;
+  }
+  
+  .error-box h2 {
+    font-size: 1.5rem;
+  }
+  
+  .error-box p {
+    font-size: 1rem;
+  }
+
+  .landing_page {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 1.5rem 0.5rem 1rem 0.5rem;
+    width: 100%;
+  }
+  .landing_page .tagline {
+    width: 90%;
+    text-align: center;
+    margin: 0 auto 1.2rem auto;
+    padding: 0 0.5rem;
+  }
+  .landing_page .landing_page_img {
+    width: 95%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+  }
+  .landing_page_img img {
+    width: 100%;
+    height: 55vh;
+    object-fit: contain;
+    display: block;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .landing_page {
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+    padding: 1rem 0.2rem 0.5rem 0.2rem;
+    top: 3rem;
+  }
+  .landing_page .tagline {
+    width: 85%;
+    padding: 0 0.2rem;
+    background: none;
+    box-shadow: none;
+    margin: 2.5rem 0 1rem 0;
+  }
+  .landing_page .tagline > div:first-child {
+    font-size: 1.3rem !important;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+  }
+  .landing_page .tagline > div:nth-child(2) {
+    font-size: 1.05rem !important;
+    margin-bottom: 1rem;
+    color: #444;
+  }
+
+  .landing_page_img{
+     height: 55vh;
+  }
+
+  .landing_page-img img {
+    width: 100%;
+    max-width: 220px;
+    min-width: 80px;
+    height: auto;
+    margin: 0 auto 1rem auto;
+    display: block;
+  }
+  .landing_page .btn {
+    width: 100%;
+    min-width: 100px;
+    font-size: 0.95rem !important;
+    padding: 0.45rem 0;
+    margin: 0 auto;
+    display: block;
+  }
+  .logo img {
+    height: 2.5rem;
+    width: 2.5rem;
+  }
+
+  .chats{
+    height: 42vh;
+  }
+
+  
+  .btn, .btn2 {
+    font-size: 0.9rem;
+    padding: 0.4em 0.8em;
+  }
+  
+  .mediaControls i {
+    font-size: 1.2rem;
+  }
+  
+  .video-container {
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    position: static;
+    width: 100% !important;
+    height: 45vh;
+    gap: 1rem;
+    margin: 0 auto;
+  }
+
+  .chatBox {
+    height: 55vh;
+  }
+  
+  .msgBox {
+    padding: 0.5rem;
+  }
+  
+  .msginput {
+    width: 70%;
+  }
+  
+  .send {
+    width: 25%;
+  }
+
+  .video {
+    width: 99vw;
+    max-width: 350px;
+    height: 18vh;
+    margin: 0 auto;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .video video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  .mediaControls {
+    position: static;
+    margin-top: 1rem;
+    top: unset;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .auth_btns {
+    gap: 0.5rem; /* Reduce gap for very small screens */
+  }
+
+  .auth_btns a {
+    max-width: 120px; /* Slightly smaller max-width for very small screens */
+  }
+
+  .video-container {
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    position: static;
+    width: 100% !important;
+    height: 38vh;
+    gap: 0.7rem;
+    margin: 0 auto;
+  }
+  .video {
+    width: 100vw;
+    max-width: 250px;
+    height: 14vh;
+    margin: 0 auto;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .video video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+
+  .chatBox {
+    height: 52vh;
+  }
+
+  .chats{
+    height: 39vh;
+  }
+}
+
+
+@media (hover: none) {
+  video::-webkit-media-controls {
+    display: flex !important;
+  }
+}
+
+
