@@ -145,8 +145,7 @@ io.on("connection", (socket) => {
   });
 });
 
-const port = process.env.PORT || 8080;
 //server.listen to listen to socket http requests too,else it'll not work.
-server.listen(port, "0.0.0.0", () => {
-  console.log("Server is running on port 8080");
+server.listen(3000, () => {
+  console.log("Server is running on port 3000");
 });
