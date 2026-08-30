@@ -74,7 +74,7 @@ app.use("/user", userRouter);
 //Defining our error handling middleware.
 
 app.use((err, req, res, next) => {
-  let { status = "400", message = "Some error occured." } = err;
+  let { status = 400, message = "Some error occured." } = err;
   console.log(err);
   res.status(status).render("error.ejs", { message });
   next(err);

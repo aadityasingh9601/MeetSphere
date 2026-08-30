@@ -21,47 +21,36 @@ const postSignUp = wrapAsync(async (req, res) => {
   if (error) {
     //throw new ExpressError(httpStatus.BAD_REQUEST, "Validation failed");
     req.flash("wrong", error.details[0].message);
-    res.redirect("/user/signup");
+    return res.redirect("/user/signup");
   }
-  if (!error) {
-    let existingUser = await User.findOne({ username: username });
 
-    if (existingUser) {
-      req.flash("exists", "Username already exists!");
-      res.redirect("/user/signup");
-      // return res
-      //   .status(httpStatus.FOUND)
-      //   .json({ message: "Username already exists" });
-    }
+  let existingUser = await User.findOne({ username: username });
 
-    let hashedPassword = await bcrypt.hash(password, 10);
-
-    const newUser = new User({
-      name: name,
-      username: username,
-      password: hashedPassword,
-    });
-
-    await newUser
-      .save()
-      .then((response) => {
-        console.log(response);
-        req.flash("success", "User registered successfully!");
-        res.redirect("/user/login");
-        // return (
-        //   res
-        //     // .status(httpStatus.CREATED)
-        //     .json({ message: "User created successfully" })
-        // );
-      })
-      .catch((err) => {
-        console.log(err);
-        req.flash("error", "User registration failed");
-        // return res
-        //   .status(httpStatus.INTERNAL_SERVER_ERROR)
-        //   .json({ message: "Error saving user" });
-      });
+  if (existingUser) {
+    req.flash("exists", "Username already exists!");
+    return res.redirect("/user/signup");
+    // return res
+    //   .status(httpStatus.FOUND)
+    //   .json({ message: "Username already exists" });
   }
+
+  let hashedPassword = await bcrypt.hash(password, 10);
+
+  const newUser = new User({
+    name: name,
+    username: username,
+    password: hashedPassword,
+  });
+
+  await newUser.save();
+  console.log("new user saved");
+  req.flash("success", "User registered successfully!");
+  res.redirect("/user/login");
+  // return (
+  //   res
+  //     // .status(httpStatus.CREATED)
+  //     .json({ message: "User created successfully" })
+  // );
 });
 
 const renderLogin = (req, res) => {
@@ -73,42 +62,33 @@ const postLogin = wrapAsync(async (req, res) => {
 
   if (!username || !password) {
     req.flash("missing", "Please provide both username and password");
-    res.redirect("/user/login");
+    return res.redirect("/user/login");
   }
 
-  try {
-    const user = await User.findOne({ username: username });
-    if (!user) {
-      req.flash("notfound", "User doesn't exist.");
-      res.redirect("/user/login");
-    }
-
-    const match = await bcrypt.compare(password, user.password);
-
-    if (match) {
-      //Storing information in our session. We're just modifiying the session here, an empty session is
-      //already created by the app.use session middleware and the session id is stored in the browser, as
-      //it's the default behavior of express sessions, here we're just modifying our session, so, don't get
-      //confused, how cookie is created and session object is created without every logging in.
-      req.session.user = { username: user.username, userId: user._id };
-      //Setting an expiry date of 7 days on the session cookie.
-      req.session.cookie.expires = new Date(
-        Date.now() + 7 * 24 * 60 * 60 * 1000
-      );
-      req.session.cookie.maxAge = 7 * 24 * 60 * 60 * 1000;
-      //console.log(req.session);
-      await user.save();
-      res.redirect("/lobby");
-      //return res.status(httpStatus.OK).json({ token: token });
-    }
-    if (!match) {
-      req.flash("wrong", "Incorrect Password");
-      res.redirect("/user/login");
-    }
-  } catch (e) {
-    console.log(e);
-    // res.json({ message: "Something went wrong" });
+  const user = await User.findOne({ username: username });
+  if (!user) {
+    req.flash("notfound", "User doesn't exist.");
+    return res.redirect("/user/login");
   }
+
+  const match = await bcrypt.compare(password, user.password);
+
+  if (!match) {
+    req.flash("wrong", "Incorrect Password");
+    return res.redirect("/user/login");
+  }
+
+  //Storing information in our session. We're just modifiying the session here, an empty session is
+  //already created by the app.use session middleware and the session id is stored in the browser, as
+  //it's the default behavior of express sessions, here we're just modifying our session, so, don't get
+  //confused, how cookie is created and session object is created without every logging in.
+  req.session.user = { username: user.username, userId: user._id };
+  //Setting an expiry date of 7 days on the session cookie.
+  req.session.cookie.expires = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
+  req.session.cookie.maxAge = 7 * 24 * 60 * 60 * 1000;
+  //console.log(req.session);
+  await user.save();
+  res.redirect("/lobby");
 });
 
 const postLogout = wrapAsync(async (req, res) => {
