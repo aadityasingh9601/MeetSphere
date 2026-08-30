@@ -95,8 +95,6 @@ io.on("connection", (socket) => {
 
   //Listening for the join-user and saving the user.
   socket.on("join-user", (username, room) => {
-    // console.log(username);
-    // console.log(room);
     socket.join(room);
     console.log(username, room);
 
@@ -112,7 +110,6 @@ io.on("connection", (socket) => {
     console.log(`Socket ${socket.id} joined room ${room}`);
     //allUsers[username] = { username, id: socket.id }; //Access allUsers key and set it's value.
     io.to(room).emit("joined", roomData[room]); //Informing all that new user joined.
-    console.log("triggered");
   });
 
   //Listening for our offer sent by client and sending it to remote client(2nd client).

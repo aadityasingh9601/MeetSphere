@@ -36,14 +36,12 @@ const fetchData = async () => {
       return response.json();
     })
     .then((data) => {
-      // console.log(data.username.username);
-      // console.log(data.room);
       username = data.username.username;
       room = data.room;
       joinUser();
     })
     .catch((err) => {
-      //console.log(`Error fetching data ${err}`);
+      
     });
 };
 
@@ -249,7 +247,6 @@ socket.on("icecandidate", async (candidate) => {
 let startCall = async (user, data) => {
   const pc = PeerConnection.getInstance();
   const offer = pc.createOffer(); //Creating our offer.
-  //console.log({ offer });
   await pc.setLocalDescription(offer); //Setting our offer as local description.
 
   //Sending our offer to the signalling server.
@@ -287,7 +284,6 @@ let startMyVideo = async () => {
         console.error("Error accessing media devices.", error);
       });
 
-    //console.log(stream);
     localStream = stream;
     localVideo.srcObject = stream;
   } catch (e) {
@@ -341,7 +337,6 @@ async function startRecording() {
     mediaRecorder.onstop = saveRecording;
     mediaRecorder.start();
 
-    // console.log("Recording started...");
   } catch (error) {
     console.error("Error starting screen recording:", error);
   }
@@ -350,7 +345,6 @@ async function startRecording() {
 function stopRecording() {
   if (mediaRecorder) {
     mediaRecorder.stop();
-    //console.log("Recording stopped...");
   }
   // startButton.disabled = false;
   // stopButton.disabled = true;
