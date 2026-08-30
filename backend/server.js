@@ -11,6 +11,7 @@ import flash from "connect-flash";
 import methodOverride from "method-override";
 import dotenv from "dotenv";
 import ejsMate from "ejs-mate";
+import MongoStore from "connect-mongo";
 dotenv.config();
 
 async function main() {
@@ -46,7 +47,10 @@ app.use(
     secret: process.env.COOKIE_SECRET,
     resave: false,
     saveUninitialized: false,
-    cookie: { secure: false },
+    store: MongoStore.create({
+      mongoUrl: process.env.MONGO_URL,
+    }),
+    cookie: { secure: process.env.NODE_ENV === "production" },
   })
 );
 app.use(flash());
@@ -146,6 +150,6 @@ io.on("connection", (socket) => {
 });
 
 //server.listen to listen to socket http requests too,else it'll not work.
-server.listen(3000, () => {
+server.listen(3000, "0.0.0.0", () => {
   console.log("Server is running on port 3000");
 });
