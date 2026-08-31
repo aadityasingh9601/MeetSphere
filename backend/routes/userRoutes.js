@@ -21,7 +21,7 @@ router
   .get(checkSession, userController.showHistory)
   .post(userController.postHistory);
 
-router.delete("/history/:id", userController.deleteHistory);
+router.delete("/history/:id", checkSession, userController.deleteHistory);
 
 // module.exports = router;  we use this for common modules.
 

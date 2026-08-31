@@ -25,11 +25,8 @@ const postSignUp = wrapAsync(async (req, res) => {
   let existingUser = await User.findOne({ username: username });
 
   if (existingUser) {
-    req.flash("exists", "Username already exists!");
+    req.flash("exists", "User already exists!");
     return res.redirect("/user/signup");
-    // return res
-    //   .status(httpStatus.FOUND)
-    //   .json({ message: "Username already exists" });
   }
 
   let hashedPassword = await bcrypt.hash(password, 10);
@@ -87,16 +84,18 @@ const postLogin = wrapAsync(async (req, res) => {
 });
 
 const postLogout = wrapAsync(async (req, res) => {
-  //If user is logging out, destroy the session.
-  if (req.session) {
-    req.session.destroy((err) => {
-      if (err) {
-        return res.status(500).send("Could not log out.");
-      }
-      res.clearCookie("connect.sid");
-      res.redirect("/user/login");
-    });
+  //If there's no session, there's nothing to log out of.
+  if (!req.session) {
+    return res.redirect("/user/login");
   }
+  req.session.destroy((err) => {
+    if (err) {
+      console.log(err);
+      return res.status(500).send("Could not log out.");
+    }
+    res.clearCookie("connect.sid");
+    res.redirect("/user/login");
+  });
 });
 
 const showHistory = wrapAsync(async (req, res) => {

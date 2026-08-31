@@ -42,6 +42,9 @@ app.use(express.static("public"));
 app.set("view engine", "ejs");
 app.engine("ejs", ejsMate);
 app.use(methodOverride("_method"));
+//Trust the first proxy (needed for secure cookies behind HTTPS reverse proxies
+//like Render/Railway so req.secure reflects the original https request).
+app.set("trust proxy", 1);
 app.use(
   session({
     secret: process.env.COOKIE_SECRET,
@@ -50,7 +53,10 @@ app.use(
     store: MongoStore.create({
       mongoUrl: process.env.MONGO_URL,
     }),
-    cookie: { secure: process.env.NODE_ENV === "production" },
+    //Only mark the cookie secure when explicitly enabled. Defaults to false so
+    //the app keeps working over plain HTTP (e.g. local Docker testing). Set
+    //COOKIE_SECURE=true only when serving over HTTPS.
+    cookie: { secure: process.env.COOKIE_SECURE === "true" },
   })
 );
 app.use(flash());
@@ -76,8 +82,11 @@ app.use("/user", userRouter);
 app.use((err, req, res, next) => {
   let { status = 400, message = "Some error occured." } = err;
   console.log(err);
+  //If the response has already been sent, do not attempt to send another one.
+  if (res.headersSent) {
+    return next(err);
+  }
   res.status(status).render("error.ejs", { message });
-  next(err);
 });
 
 //Handling socket connections.
